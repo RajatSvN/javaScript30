@@ -1,0 +1,170 @@
+<htmL>
+<head><title>Drumkit</title>
+<style>
+
+	body{
+	
+  background: url(background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+.key{
+	position:relative;
+	float:left;
+	border : solid 3px black;
+	width : 80px ;
+	height : 80px;
+	text-align: center;
+	padding-top: 10px ;
+	margin : 10px;
+	border-radius: 20%;
+	transition: all 0.07s;
+}
+kbd{
+
+font-size: 30px ;
+
+}
+.container{
+	height:120px;
+    width:63%;
+    border : solid 3px #FEEB88;
+    margin : 270px ;
+    border-radius: 10%;
+}
+.playing{
+	transform: scale(1.1);
+    border-color: #ffc600;
+    box-shadow: o o 10px #ffc600;
+}
+</style>
+</head>
+<body>
+
+
+<div class="container">
+
+<div data-key="65" class="key">
+
+<kbd>A</kbd>
+<br>
+<span class="sound">Clap</span>
+
+</div>
+
+
+<div data-key="83" class="key">
+
+<kbd>S</kbd>
+<br>
+<span class="sound">Hi Hat</span>
+
+</div>
+
+<div data-key="68" class="key">
+
+<kbd>D</kbd>
+<br>
+<span class="sound">Kick</span>
+
+</div>
+
+<div data-key="70" class="key">
+
+<kbd>F</kbd>
+<br>
+<span class="sound">Open Hat</span>
+
+</div>
+
+<div data-key="71" class="key">
+
+<kbd>G</kbd>
+<br>
+<span class="sound">Bass</span>
+
+</div>
+
+<div data-key="72" class="key">
+
+<kbd>H</kbd>
+<br>
+<span class="sound">Ride</span>
+
+</div>
+
+<div data-key="74" class="key">
+
+<kbd>J</kbd>
+<br>
+<span class="sound">Snare</span>
+
+</div>
+
+<div data-key="75" class="key">
+
+<kbd>K</kbd>
+<br>
+<span class="sound">Cymbals</span>
+
+</div>
+
+<div data-key="76" class="key">
+
+<kbd>L</kbd>
+<br>
+<span class="sound">Percs</span>
+
+</div>
+
+</div>
+<audio data-key="65" src="Clap.wav"></audio>
+<audio data-key="83" src="HiHat.wav"></audio>
+<audio data-key="68" src="Kick.wav"></audio>
+<audio data-key="70" src="OpenHat.wav"></audio>
+<audio data-key="71" src="Bass.wav"></audio>
+<audio data-key="72" src="Ride.wav"></audio>
+<audio data-key="74" src="Snare.wav"></audio>
+<audio data-key="75" src="Cymbals.wav"></audio>
+<audio data-key="76" src="Perc.wav"></audio>
+</body>
+<script type="text/javascript" src="drumkit.js">
+
+window.addEventListener('keydown',function(e){
+
+const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); // getting the audio associated with typed key
+const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); // geting the key typed according to keycode
+
+//str1 ${ value } str2 in a string is equal to str1 + value + str2
+
+// ${ value } is an ES6 string template.
+
+if(!audio) return ; // if there is no or null audio element exit out the given function
+
+audio.currentTime = 0 ; // for consecutive clicks audio is rewinded to start
+audio.play();
+
+key.classList.add(`playing`); // this is how classes are added in vanilla javascript , playing class does our little animation
+
+setTimeout(function(){
+
+key.classList.remove(`playing`);
+
+// removing playing class after transistion is over
+
+},70);
+
+});
+
+
+
+
+
+
+
+</script>
+</htmL>
