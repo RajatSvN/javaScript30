@@ -1,0 +1,78 @@
+<htmL>
+<head>
+<title> Day3 </title>
+<style>
+:root{
+
+--base : #ffc600;
+--spacing : 10px ;
+--blur : 5px ;
+
+
+}
+.controls{
+
+text-align : center ;
+
+}
+
+img{
+height : 350px ;
+width : 350 px;
+border  : solid var(--spacing) var(--base);
+filter : blur(var(--blur));
+}
+
+.hl{
+
+color : var(--base);
+
+}
+
+</style>
+</head>
+<body>
+<h2 style="text-align:center">Update CSS variables with <span class="hl"> JS </span></h2>
+<div class="controls">
+
+<label for="spacing"> Spacing: </label>
+<input name="spacing" type="range" min="10" max="200" value="10" data-sizing="px">
+
+<label for="blur"> Blur: </label>
+<input name="blur" type="range" min="0" max="25" value="10" data-sizing="px">
+
+<br><br>
+
+<label for="base"> Color: </label>
+<input type="color" name="base" value="#ffc600">
+
+
+</div>
+
+<br><br>
+
+<center><img src="Computer.jpg" alt="Trouble Loading Image"></center>
+
+</body>
+<script>
+
+// Select all inputs under the div controls
+const inputs = document.querySelectorAll('.controls input');
+
+// this function is called when event of change is fired and changed state of input is passed on here 
+function applyProperties(){
+
+// extracting the "px" suffix , this.dataset contains all data type attribute
+const suffix = this.dataset.sizing || ''; // suffix can be px or nothing , we don't want an undefined here 
+
+// javascript way of changing css property
+document.documentElement.style.setProperty(`--${this.name}`,this.value + suffix);
+
+
+// Document.documentElement returns the Element that is the root element of the document (for example, the <html> element for HTML documents).
+}
+
+// inputs is a nodelist of all inputs , we iterate through forEach method and add change event Listener having a callback function
+inputs.forEach(input => input.addEventListener('change',applyProperties));
+</script>
+</htmL>
