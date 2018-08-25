@@ -1,0 +1,124 @@
+<htmL>
+<head>
+<title>Array Cardio 1</title>
+</head>
+<body>
+	
+
+
+
+</body>
+<script>
+
+	// making an object array of inventors
+const inventors = [{first:'Albert',last:'Einstein',year:1879,passed:1955},
+                   {first:'Isaac',last:'Newton',year:1643,passed:1727},
+                   {first:'Galileo',last:'Galilei',year:1564,passed:1642},
+                   {first:'Marie',last:'Curie',year:1867,passed:1934},
+                   {first:'Johannes',last:'Kepler',year:1571,passed:1630},
+                   {first:'Nicolaus',last:'Copernicus',year:1473,passed:1543},
+                   {first:'Max',last:'Planck',year:1858,passed:1947}];
+
+
+const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
+
+// 1. .filter() of an array : https://www.w3schools.com/jsref/jsref_filter.asp
+
+// Task : Filter inventors born on int the fifteen hundereds
+
+function check15(inventor){
+
+ if(inventor.year >=1500 && inventor.year<1600){
+ 	return true;
+ }
+
+
+}
+
+const fifteen = inventors.filter(check15);
+
+
+// Or same could be acheived the vanilla way 
+
+const fifteens = inventors.filter(myVal => (myVal.year>=1500 && myVal.year<1600));
+
+//Vanilla
+console.table(fifteens);
+
+//Normal
+console.table(fifteens);
+
+function getFullName(inventor){
+
+ var fullName = inventor.first + " " + inventor.last ;
+ 
+ return fullName;
+ 
+}
+
+const fullName = inventors.map(getFullName);
+
+
+// Normal
+console.table(fullName);
+
+//Vanilla way 
+
+const fullNames = inventors.map(myVal => myVal.first + " " + myVal.last);
+
+console.table(fullNames);
+
+
+// Vanilla way Sorting 
+const ordered = inventors.sort((a,b) => a.year>b.year ? 1 : -1);
+
+console.table(ordered);
+
+// totla years inventors live for
+
+const totalYears = inventors.reduce((total,inventor)=> {
+
+	return total + (inventor.passed - inventor.year)
+
+},0);
+
+console.log(totalYears);
+
+// sort inventors by year lived 
+
+const oldest = inventors.sort((a,b)=>{
+
+	if((a.passed-a.year)>(b.passed -b.year)){
+
+		return -1;
+	}else{
+		return 1;
+	}
+})
+		console.table(oldest);
+
+// get all boulevards in paris with a de in it	, 
+// Run on : https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+
+/*category = document.querySelectorAll('.mw-category a');
+reduce = arr.map(myVal => myVal.textContent).filter(vals => vals.include('de'))*/
+
+// Sort People by their last names
+
+const results = people.sort((a,b)=>{
+ 
+ first = [];
+ next = [];
+
+ first = a.split(", ");
+ next = b.split(", ");
+
+ return first[0]>next[0]?1:-1;
+
+
+})
+
+console.table(results);
+
+</script>
+</htmL>
